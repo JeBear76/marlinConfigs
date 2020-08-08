@@ -488,11 +488,11 @@
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
-// JEBEAR  - Redo M303 C8 E0 S210 once assembled
+// JEBEAR  - Redo M303 C8 E0 S210 once assembled - Done
   // Ultimaker
-  #define DEFAULT_Kp 22.2
-  #define DEFAULT_Ki 1.08
-  #define DEFAULT_Kd 114
+  #define DEFAULT_Kp 30.92
+  #define DEFAULT_Ki 3.81
+  #define DEFAULT_Kd 62.69
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -523,7 +523,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -541,10 +541,10 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-// JEBEAR  - Redo M303 C8 E-1 S110 once assembled
-  #define DEFAULT_bedKp 10.00
-  #define DEFAULT_bedKi .023
-  #define DEFAULT_bedKd 305.4
+// JEBEAR  - Redo M303 C8 E-1 S70 once assembled - Done
+  #define DEFAULT_bedKp 167.69
+  #define DEFAULT_bedKi 23.00
+  #define DEFAULT_bedKd 815.08
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -660,10 +660,10 @@
   //#define ENDSTOPPULLDOWN_ZMIN_PROBE
 #endif
 
-// JEBEAR - here if endstops not working
+// JEBEAR - here if endstops not working - Done
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 #define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -749,8 +749,8 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-// JEBEAR - Recalibrate steps/mm 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+// JEBEAR - Recalibrate steps/mm - Done
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 1000 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -853,7 +853,7 @@
 #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING
 
 /**
  * Z_MIN_PROBE_PIN
@@ -871,7 +871,7 @@
  *      - normally-open switches to 5V and D32.
  *
  */
-#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
+//#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
 
 /**
  * Probe Type
@@ -986,8 +986,8 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-// JEBEAR = Measure nozzle-probe offset
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+// JEBEAR = Measure nozzle-probe offset - Done
+#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -8 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1105,7 +1105,8 @@
 
 // @section homing
 
-//#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed
+// JEBEAR - Enable this after completing all calibrations - Done
+#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed
 
 //#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
@@ -1126,14 +1127,14 @@
 #define X_BED_SIZE 250
 #define Y_BED_SIZE 270
 
-// JEBEAR - set min and max pox after assembly
+// JEBEAR - set min and max pox after assembly - Done
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+#define Z_MAX_POS 260
 
 /**
  * Software Endstops

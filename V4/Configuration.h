@@ -489,10 +489,15 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // JEBEAR  - Redo M303 C8 E0 S210 once assembled - Done
-  // Ultimaker
-  #define DEFAULT_Kp 30.92
-  #define DEFAULT_Ki 3.81
-  #define DEFAULT_Kd 62.69
+  // Red
+  #define DEFAULT_Kp 23.22
+  #define DEFAULT_Ki 2.21
+  #define DEFAULT_Kd 60.88
+
+  // // Blue
+  // #define DEFAULT_Kp 30.92
+  // #define DEFAULT_Ki 3.81
+  // #define DEFAULT_Kd 62.69
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -542,9 +547,15 @@
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
 // JEBEAR  - Redo M303 C8 E-1 S70 once assembled - Done
-  #define DEFAULT_bedKp 167.69
-  #define DEFAULT_bedKi 23.00
-  #define DEFAULT_bedKd 815.08
+  // Red
+  #define DEFAULT_bedKp 47.71
+  #define DEFAULT_bedKi 2.46
+  #define DEFAULT_bedKd 617.59
+
+// // Blue
+//   #define DEFAULT_bedKp 167.69
+//   #define DEFAULT_bedKi 23.00
+//   #define DEFAULT_bedKd 815.08
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -662,8 +673,12 @@
 
 // JEBEAR - here if endstops not working - Done
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+// Red
+#define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+//Blue
+// #define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+// #define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -750,7 +765,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 // JEBEAR - Recalibrate steps/mm - Done
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 1000 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 1000 } //Blue 
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -987,11 +1002,12 @@
  * Specify a Probe position as { X, Y, Z }
  */
 // JEBEAR = Measure nozzle-probe offset - Done
-#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -8 }
+#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -1.85 } // Red
+//#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -7.75 } // Blue
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 10
+#define PROBING_MARGIN 20
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -1134,7 +1150,8 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 260
+#define Z_MAX_POS 200 // Red
+//#define Z_MAX_POS 250 // Blue
 
 /**
  * Software Endstops
@@ -1172,6 +1189,7 @@
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
+// JEBEAR - Activate filament runout sensor - done
 //#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define NUM_RUNOUT_SENSORS   1     // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
@@ -1533,7 +1551,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MAX_POS - 10), (Y_MIN_POS + 10), 20 }
+  #define NOZZLE_PARK_POINT { X_MIN_POS, Y_MIN_POS, 20 }
   //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
   //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
@@ -2333,7 +2351,7 @@
 #define SERVO_DELAY { 300 }
 
 // Only power servos during movement, otherwise leave off to prevent jitter
-//#define DEACTIVATE_SERVOS_AFTER_MOVE
+#define DEACTIVATE_SERVOS_AFTER_MOVE
 
 // Allow servo angle to be edited and saved to EEPROM
 //#define EDITABLE_SERVO_ANGLES

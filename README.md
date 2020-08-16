@@ -1,2 +1,3 @@
-# marlinConfigs
-Storage space for my 3D printer Marlin config
+# Marlin Configs
+Storage space for my 3D printers Marlin configurations and PrusaSlicer Configurations
+

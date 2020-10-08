@@ -489,15 +489,15 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // JEBEAR  - Redo M303 C8 E0 S210 once assembled - Done
-  // Red
-  #define DEFAULT_Kp 23.22
-  #define DEFAULT_Ki 2.21
-  #define DEFAULT_Kd 60.88
+  // // Red
+  // #define DEFAULT_Kp 23.22
+  // #define DEFAULT_Ki 2.21
+  // #define DEFAULT_Kd 60.88
 
-  // // Blue
-  // #define DEFAULT_Kp 30.92
-  // #define DEFAULT_Ki 3.81
-  // #define DEFAULT_Kd 62.69
+  // Blue
+  #define DEFAULT_Kp 30.92
+  #define DEFAULT_Ki 3.81
+  #define DEFAULT_Kd 62.69
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -547,15 +547,15 @@
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
 // JEBEAR  - Redo M303 C8 E-1 S70 once assembled - Done
-  // Red
-  #define DEFAULT_bedKp 47.71
-  #define DEFAULT_bedKi 2.46
-  #define DEFAULT_bedKd 617.59
+  // // Red
+  // #define DEFAULT_bedKp 47.71
+  // #define DEFAULT_bedKi 2.46
+  // #define DEFAULT_bedKd 617.59
 
-// // Blue
-//   #define DEFAULT_bedKp 167.69
-//   #define DEFAULT_bedKi 23.00
-//   #define DEFAULT_bedKd 815.08
+// Blue
+  #define DEFAULT_bedKp 167.69
+  #define DEFAULT_bedKi 23.00
+  #define DEFAULT_bedKd 815.08
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -673,12 +673,13 @@
 
 // JEBEAR - here if endstops not working - Done
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-// Red
-#define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
-//Blue
-// #define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+// // Red
+// #define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 // #define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+//Blue
+#define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+
 #define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -701,15 +702,15 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  DRV8825
-#define Y_DRIVER_TYPE  DRV8825
+#define X_DRIVER_TYPE  TMC2100
+#define Y_DRIVER_TYPE  TMC2100
 #define Z_DRIVER_TYPE  DRV8825
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-//#define E0_DRIVER_TYPE A4988
+//#define E0_DRIVER_TYPE DRV8825
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -765,7 +766,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 // JEBEAR - Recalibrate steps/mm - Done
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 1000 } //Blue 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 1000 } // Red
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -785,7 +786,8 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+// JEBEAR - Set Acceleration for TMCs - Done
+#define DEFAULT_MAX_ACCELERATION      { 100, 100, 100, 10000 } 
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1002,8 +1004,8 @@
  * Specify a Probe position as { X, Y, Z }
  */
 // JEBEAR = Measure nozzle-probe offset - Done
-#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -1.85 } // Red
-//#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -7.75 } // Blue
+//#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -1.85 } // Red
+#define NOZZLE_TO_PROBE_OFFSET { 45, 0, -7.75 } // Blue
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1150,8 +1152,8 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200 // Red
-//#define Z_MAX_POS 250 // Blue
+//#define Z_MAX_POS 200 // Red
+#define Z_MAX_POS 250 // Blue
 
 /**
  * Software Endstops
